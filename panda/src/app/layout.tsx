@@ -40,7 +40,7 @@ export default function RootLayout({
 
       {/* Main content */}
       <main className="flex-1 p-6 bg-gray-100">
-        <Search/>
+       
         {children} {/* This will render the page-specific content */}
       </main>
     </div>
