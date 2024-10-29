@@ -32,13 +32,16 @@ export default function SideBar() {
       <div className="flex min-h-screen">
         <aside className="w-64 bg-gray-400 text-white flex flex-col p-4">
           <div className="mb-4">
-            <h2 className="text-xl font-bold">Sidebar</h2>
+            <h2 className="text-xl font-bold">Spectre AI</h2>
           </div>
           <nav>
           <ul>
+            <div className="rounded-lg px-3 py-2 bg-gray-300 mb-2">
+                + New Case
+            </div>
           {navItems.map((item) => (
-              <div key={item.id} className="rounded-lg hover:bg-gray-500 px-1 py-1 text-center">
-                <li className="mb-2">
+              <div key={item.id} className="rounded-lg hover:bg-gray-500 px-3 py-2 mb-2">
+                <li>
                   <a href={item.href} className="hover:text-gray-300">{item.text}</a>
                 </li>
               </div>
