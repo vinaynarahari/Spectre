@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
-import SideBar from "./components/sidebar";
+import SideBar from "./components/SideBar";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -37,6 +37,7 @@ export default function RootLayout({
 
       {/* Main content */}
       <main className="flex-1 p-6 bg-gray-100">
+        <SearchBar/>
         {children} {/* This will render the page-specific content */}
       </main>
     </div>
