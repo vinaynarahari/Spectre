@@ -69,11 +69,12 @@ export default function SideBar() {
                 <span className="pl-2">New Case</span>
               </a>
             </div>
+            {/*
             {navItems.map((item) => (
               <a key={item.id} href={item.href} className="">
                 <div
                   
-                  className="flex items-center rounded-lg px-3 py-2 mb-2 transition-all duration-200 hover:bg-green-3"
+                  className="flex items-center rounded-lg px-3 py-2 mb-2 transition-all duration-200 hover:bg-light-blue"
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -91,6 +92,30 @@ export default function SideBar() {
                 </div>
               </a>
             ))}
+          */}
+          {navItems.map((item) => (
+  <a
+    key={item.id}
+    href={item.href}
+    className="relative flex items-center rounded-lg px-3 py-2 mb-2 overflow-hidden group"
+  >
+    <div className="relative z-10 flex items-center">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        strokeWidth={1.5}
+        stroke="currentColor"
+        className="w-6 h-6 mr-2 transition-all duration-200"
+      >
+        <path strokeLinecap="round" strokeLinejoin="round" d={item.icon} />
+      </svg>
+      {item.text}
+    </div>
+    <span className="absolute inset-0 bg-green-4 transition-colors duration-300 group-hover:bg-green-3"></span>
+  </a>
+))}
+
           </ul>
         </nav>
       </aside>
