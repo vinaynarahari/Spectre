@@ -5,7 +5,7 @@ export default function Search() {
     <div className="flex w-full justify-center">
       <div className="flex justify-center w-full">
         <form
-          className="w-1/2 h-[50px] bg-gray-200 rounded-full flex items-center p-4 transition-all duration-300 focus-within:bg-gray-300"
+          className="w-1/2 h-[50px] bg-gray-100 rounded-full flex items-center p-4 transition-all duration-300 focus-within:bg-gray-200"
           onSubmit={(e) => e.preventDefault()}
         >
           <svg
