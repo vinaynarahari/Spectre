@@ -13,7 +13,15 @@ async function getCase(id) {
     return response.json();
 }
 
-export default async function CaseDetails({ params }) {    
+function updateCase() {
+    
+}
+
+function CaseEditor({ caseData }) {
+
+}
+
+export default async function CasePage({ params }) {    
     const { id } = await params;
 
     if (!id) {
@@ -24,8 +32,14 @@ export default async function CaseDetails({ params }) {
 
     return (
         <main>
-            <div key={c.id}>
-                <h2>{c.title}</h2>
+            <div key={c.id} className="bg-gray-200 grid grid-cols-2 gap-10 min-h-screen">
+                <div className="text-center border-r-4 border-gray-500">
+                    Model Output
+                </div>
+                <div className="text-center">
+                    {c.title}
+                    {c.body}
+                </div>
             </div>
         </main>
     );
