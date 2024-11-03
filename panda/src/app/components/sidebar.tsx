@@ -1,3 +1,6 @@
+"use client";
+
+import { useState } from "react";
 import Image from "next/image";
 
 const navItems = [
@@ -28,60 +31,106 @@ const navItems = [
 ];
 
 export default function SideBar() {
+  const [isCollapsed, setIsCollapsed] = useState(false);
+
   return (
-    <div className="flex min-h-screen">
-      <aside className="w-60 bg-green-4 text-white flex flex-col p-2">
-        <div className="pr-4 pl-4 pb-4">
-          <Image src="/logo.png" alt="B" width={240} height={100} className="mt-0"/>
+    <div className="flex min-h-screen relative group">
+      <aside
+        className={`flex flex-col p-2 transition-width duration-300 ${
+          isCollapsed ? "w-20" : "w-64"
+        } bg-gray-900 text-gray-300`}
+      >
+        <div className="flex justify-center items-center py-4">
+          <Image
+            src={isCollapsed ? "/collapsed-logo.png" : "/logo.png"}  // Use different image paths
+            alt="Logo"
+            width={isCollapsed ? 40 : 160}
+            height={isCollapsed ? 40 : 60}
+            className="transition-all duration-200"
+            priority
+          />
         </div>
+
+
+        {/* New Case Button */}
+        <div
+          className={`flex rounded-lg ${
+            isCollapsed ? "justify-center" : ""
+          } bg-gray-800 hover:bg-gray-700 transition-all duration-200 mb-2`}
+        >
+          <a
+            href="/new-case"
+            className={`flex items-center w-full px-2 py-2 ${
+              isCollapsed ? "justify-center" : ""
+            } rounded-lg transition-all duration-200`}
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth={1.5}
+              stroke="currentColor"
+              className="w-6 h-6 text-gray-300"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M12 10.5v6m3-3H9m4.06-7.19-2.12-2.12a1.5 1.5 0 0 0-1.061-.44H4.5A2.25 2.25 0 0 0 2.25 6v12a2.25 2.25 0 0 0 2.25 2.25h15A2.25 2.25 0 0 0 21.75 18V9a2.25 2.25 0 0 0-2.25-2.25h-5.379a1.5 1.5 0 0 1-1.06-.44Z"
+              />
+            </svg>
+            {!isCollapsed && <span className="pl-2 text-gray-300">New Case</span>}
+          </a>
+        </div>
+
         <nav>
           <ul>
-            <div className="flex rounded-lg bg-green-2 hover:bg-green-3 transition-all duration-200 mb-2">
-              <a href="/new-case" className="flex items-center w-full text-left px-2 py-2 bg-mid-green hover:bg-dark-green rounded-lg transition-all duration-200">
-                <div className="pl-2 py-2">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    strokeWidth={1.5}
-                    stroke="currentColor"
-                    className="w-6 h-6"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M12 10.5v6m3-3H9m4.06-7.19-2.12-2.12a1.5 1.5 0 0 0-1.061-.44H4.5A2.25 2.25 0 0 0 2.25 6v12a2.25 2.25 0 0 0 2.25 2.25h15A2.25 2.25 0 0 0 21.75 18V9a2.25 2.25 0 0 0-2.25-2.25h-5.379a1.5 1.5 0 0 1-1.06-.44Z"
-                    />
-                  </svg>
-                </div>
-                <span className="pl-2">New Case</span>
-              </a>
-            </div>
             {navItems.map((item) => (
               <a
                 key={item.id}
                 href={item.href}
-                className="relative flex items-center rounded-lg px-3 py-2 mb-2 overflow-hidden group"
+                className={`flex items-center rounded-lg px-3 py-2 mb-2 transition-all duration-200 ${
+                  isCollapsed ? "justify-center" : ""
+                } hover:bg-gray-700`}
               >
-                <div className="relative z-10 flex items-center">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    strokeWidth={1.5}
-                    stroke="currentColor"
-                    className="w-6 h-6 mr-2 transition-all duration-200"
-                  >
-                    <path strokeLinecap="round" strokeLinejoin="round" d={item.icon} />
-                  </svg>
-                  {item.text}
-                </div>
-                <span className="absolute inset-0 bg-green-4 transition-colors duration-300 group-hover:bg-green-3"></span>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth={1.5}
+                  stroke="currentColor"
+                  className="w-6 h-6 text-gray-300"
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" d={item.icon} />
+                </svg>
+                {!isCollapsed && <span className="ml-2 text-gray-300">{item.text}</span>}
               </a>
             ))}
           </ul>
         </nav>
       </aside>
+
+      {/* Toggle button - only visible on sidebar hover */}
+      <div
+        className="absolute top-1/2 -right-3 transform -translate-y-1/2 bg-gray-900 hover:bg-gray-900 p-1 rounded-full cursor-pointer opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+        onClick={() => setIsCollapsed(!isCollapsed)}
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+          className={`w-5 h-5 transform transition-transform duration-300 ${
+            isCollapsed ? "rotate-180" : ""
+          } text-gray-300 hover:text-yellow-500`}
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M15 19l-7-7 7-7"
+          />
+        </svg>
+      </div>
     </div>
   );
 }
