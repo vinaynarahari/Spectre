@@ -16,8 +16,12 @@ const config: Config = {
         "green-2": "#a0afa1",
         "green-1": "#adebb3",
         "light-blue": "#5ed4fe",
-        "dark-blue": "#009dc5"
-        
+        "dark-blue": "#009dc5",
+        "blackbean": "330F0A",
+        "babypow": "FDFFFC",
+        "coolgray": "8A89C0",
+        "logoblue": "083D77",
+        "sienna": "D7816A"
       },
     },
   },
