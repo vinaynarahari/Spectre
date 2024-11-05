@@ -3,11 +3,11 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Key } from "react";
 
-function truncateString(str: string, maxLength: number): string {
-    if (str.length <= maxLength) {
+function truncateString(str: string): string {
+    if (str.length <= 20) {
       return str; 
     } else {
-      return str.slice(0, maxLength) + "..."; 
+      return str.slice(0, 20) + "..."; 
     }
   }
 
@@ -60,7 +60,7 @@ export default async function Grid() {
                         <div className="text-left text-sm w-3/4 bg-gray-200 mx-auto p-3">
                             <Link href={`/analyze/${doc.id}`}>
                                 <div>
-                                    {truncateString(doc.title , 20)}
+                                    {truncateString(doc.title)}
                                 </div>
                             </Link>
                             <div className="text-xs">Last opened {processDate(doc.lastOpened)}</div>

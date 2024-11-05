@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 
 const navItems = [
@@ -33,6 +33,21 @@ const navItems = [
 export default function SideBar() {
   const [isCollapsed, setIsCollapsed] = useState(false);
 
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth < 1000) {
+        setIsCollapsed(true);
+      } else {
+        setIsCollapsed(false);
+      }
+    };
+
+    handleResize(); 
+    window.addEventListener("resize", handleResize);
+    
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   return (
     <div className="flex min-h-screen relative group">
       <aside
@@ -42,7 +57,7 @@ export default function SideBar() {
       >
         <div className="flex justify-center items-center py-4">
           <Image
-            src={isCollapsed ? "/collapsed-logo.png" : "/logo.png"}  // Use different image paths
+            src={isCollapsed ? "/collapsed-logo.png" : "/logo.png"} 
             alt="Logo"
             width={isCollapsed ? 40 : 160}
             height={isCollapsed ? 40 : 60}
@@ -51,8 +66,6 @@ export default function SideBar() {
           />
         </div>
 
-
-        {/* New Case Button */}
         <div
           className={`flex rounded-lg ${
             isCollapsed ? "justify-center" : ""
