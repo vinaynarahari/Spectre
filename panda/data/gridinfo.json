@@ -1,40 +1,39 @@
-{"cases": [
-   {
-       "id": "1",
-       "image": "path/to/image1.jpg",
-       "title": "Case of Smith v. Doe",
-       "lastOpened": "2024-10-25T14:30:00Z",
-       "caseType": "CV"
-       
+{
+  "cases": [
+    {
+      "id": "1",
+      "title": "Case of Smith v. Doe",
+      "body": "this is an example case",
+      "lastOpened": "2024-10-25T14:30:00Z",
+      "caseType": "CV"
     },
     {
-       "id": "2",
-       "image": "path/to/image2.jpg",
-       "title": "Jones Estate Settlement",
-       "lastOpened": "2024-10-26T09:15:00Z",
+      "id": "2",
+      "title": "Jones Estate Settlement",
+      "body": "test different bodies",
+      "lastOpened": "2024-10-26T09:15:00Z",
       "caseType": "CH"
     },
     {
-       "id": "3",
-       "image": "path/to/image3.jpg",
-       "title": "People v. Clark",
-       "lastOpened": "2024-10-27T16:45:00Z",
-       "caseType": "GC"
-
+      "id": "3",
+      "title": "People v. Clark",
+      "body": "",
+      "lastOpened": "2024-10-27T16:45:00Z",
+      "caseType": "GC"
     },
     {
-       "id": "4",
-       "image": "path/to/image4.jpg",
-       "title": "Land Dispute: Greenfield v. Woods",
-       "lastOpened": "2024-10-28T11:00:00Z",
-       "caseType": "LT"
+      "id": "4",
+      "title": "Land Dispute: Greenfield v. Woods",
+      "body": "",
+      "lastOpened": "2024-10-28T11:00:00Z",
+      "caseType": "LT"
     },
     {
-       "id": "5",
-       "image": "path/to/image5.jpg",
-       "title": "Patent Dispute - Johnson Co.",
-       "lastOpened": "2024-10-29T13:20:00Z",
-       "caseType": "OT"
+      "id": "5",
+      "title": "Patent Dispute - Johnson Co.",
+      "body": "",
+      "lastOpened": "2024-10-29T13:20:00Z",
+      "caseType": "OT"
     }
- ]
- }
+  ]
+}
