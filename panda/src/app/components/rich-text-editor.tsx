@@ -1,32 +1,29 @@
-// src/app/components/rich-text-editor.tsx
 "use client";
 
 import { useEffect, useState } from 'react';
-import { EditorContent, useEditor } from '@tiptap/react';
-import StarterKit from '@tiptap/starter-kit';
-import TipTap from "@/app/components/tiptap-editor"
-import { v4 as uuidv4 } from "uuid"
+import TipTap from "@/app/components/tiptap-editor";
 
-export default function RichTextEditor({content, caseId}) {
-
+export default function RichTextEditor({ content, title: initialTitle, caseId }) {
     const [editorContent, setEditorContent] = useState(content);
-    
-    const handleContentChange = (reason: any) => (
-        setEditorContent(reason)
-    )
+    const [title, setTitle] = useState(initialTitle);
+
+    useEffect(() => {
+        setEditorContent(content); 
+    }, [content]);
+
+    const handleContentChange = (newContent) => setEditorContent(newContent);
+    const handleTitleChange = (e) => setTitle(e.target.value);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        
+
         const data = {
             id: caseId,
-            title: "New Case",
+            title: title,
             content: editorContent,
             lastOpened: new Date().toISOString(),
-            caseType: "OT"
+            caseType: "OT",
         };
-        
-        console.log(caseId)
 
         try {
             const response = await fetch(`http://localhost:4000/cases/${caseId}`, {
@@ -36,9 +33,13 @@ export default function RichTextEditor({content, caseId}) {
                 },
                 body: JSON.stringify(data),
             });
-    
+
             if (response.ok) {
-                console.log("Data saved successfully");
+                const updatedData = await response.json();
+                setTitle(updatedData.title);
+                setEditorContent(updatedData.content);
+                // make successfully saved alert
+                console.log("Data saved and updated successfully");
             } else {
                 console.error("Failed to save data", response.status);
             }
@@ -46,21 +47,26 @@ export default function RichTextEditor({content, caseId}) {
             console.error("An error occurred:", error);
         }
     };
-    
 
     return (
         <form onSubmit={handleSubmit}>
+            <input
+                type="text"
+                value={title}
+                onChange={handleTitleChange}
+                placeholder="Case Title"
+                className="w-full mb-4 px-3 py-2 border rounded-md"
+            />
             <TipTap
-                content={content}
-                onChange={(newContent: string) => handleContentChange(newContent)}
+                content={editorContent}
+                onChange={handleContentChange}
             />
             <button
                 type="submit"
-                className="px-4 bg-sky-700 text-white py-2 rounded-md"
+                className="px-4 bg-sky-700 text-white py-2 rounded-md mt-4"
             >
-                Add
+                Save
             </button>
         </form>
-    )
-
+    );
 };

@@ -14,7 +14,7 @@ export default function TipTap({onChange, content}: any) {
     content: content,
     editorProps: {
         attributes: {
-            class: "flex"
+            class: "bg-white rounded-md p-3 h-52"
         }
     },
 
@@ -25,4 +25,3 @@ export default function TipTap({onChange, content}: any) {
 
   return <EditorContent editor={editor} />
 }
-
