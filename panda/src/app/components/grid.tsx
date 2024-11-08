@@ -49,14 +49,12 @@ export default async function Grid() {
 
     return (
         <div className="my-10 mx-5">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
                 {docs.map((doc: { id: Key | null | undefined; title: string; lastOpened: string; }) => (
                     <div key={doc.id} className="flex justify-center">
-                        <div className="w-64 min-w-0 h-80 flex flex-col">
-                            {/* Added w-full to ensure the div takes the full width of the container */}
-                            <div className="h-48 w-full bg-gray-100 mx-auto"></div>
-                            {/*Only multiples of 4 height*/}
-                            <div className="text-left text-sm bg-gray-200 p-3 h-16 flex flex-col justify-between">
+                        <div className="w-64 min-w-0">
+                            <div className="h-48 bg-gray-100 mx-auto"></div>
+                            <div className="text-left text-sm bg-gray-200 p-3">
                                 <Link href={`/analyze/${doc.id}`}>
                                     <div>
                                         {truncateString(doc.title)}
