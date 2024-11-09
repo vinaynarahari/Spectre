@@ -4,8 +4,8 @@
       "id": "1",
       "title": "Case of Smith v. Doe",
       "content": "<p>\"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\"</p><p><br></p>",
-      "lastOpened": "2024-11-06T01:18:33.083Z",
-      "caseType": "OT"
+      "lastOpened": "2024-11-08T23:37:03.719Z",
+      "caseType": "NT"
     },
     {
       "id": "2",
@@ -34,6 +34,24 @@
       "body": "",
       "lastOpened": "2024-10-29T13:20:00Z",
       "caseType": "OT"
+    }
+  ],
+  "clients": [
+    {
+      "id": "1",
+      "name": "John Smith",
+      "age": "50",
+      "email": "johnsmith@gmail.com",
+      "phoneNumber": "123-456-7890",
+      "caseId": "1"
+    },
+    {
+      "id": "2",
+      "name": "Joe Jones",
+      "age": "40",
+      "email": "joejones@yahoo.com",
+      "phoneNumber": "098-765-4321",
+      "caseId": "2"
     }
   ]
 }

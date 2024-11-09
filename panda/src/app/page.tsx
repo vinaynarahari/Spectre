@@ -5,9 +5,9 @@ import Grid from "./components/grid"
 export default function Home() {
   return (
     <div>
-      <div>
+      {/* <div>
         <Search/>
-      </div>
+      </div> */}
       <div>
         <Grid />
       </div>

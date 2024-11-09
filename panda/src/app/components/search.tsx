@@ -1,6 +1,15 @@
 "use client";
 
-export default function Search() {
+import { useState } from "react";
+
+export default function Search({ onSearch }: { onSearch: (query: string) => void }) {
+  const [query, setQuery] = useState("");
+
+  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setQuery(e.target.value);
+    onSearch(e.target.value); 
+  };
+
   return (
     <div className="flex w-full justify-center">
       <div className="flex justify-center w-full">
@@ -25,6 +34,8 @@ export default function Search() {
           <input
             type="text"
             placeholder="Search"
+            value={query}
+            onChange={handleSearchChange}
             className="bg-transparent outline-none text-gray-700 flex-grow transition-colors duration-300 focus:text-gray-900"
           />
         </form>

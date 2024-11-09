@@ -31,8 +31,9 @@ export default async function CasePage({ params }) {
                 <div className="text-center border-r-4 border-gray-500">
                     <AnalyzerPrompt />
                 </div>
-                <div className="text-center p-3">
+                <div className="text-left p-3">
                     <RichTextEditor
+                        // type={caseData.type}
                         content={caseData.content}
                         caseId={id} title={caseData.title}/>
                 </div>
