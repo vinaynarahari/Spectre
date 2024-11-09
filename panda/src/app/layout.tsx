@@ -37,7 +37,7 @@ export default function RootLayout({
       <SideBar /> {/* Sidebar is imported and rendered here */}
 
       {/* Main content */}
-      <main className="flex-1 p-6">
+      <main className="flex-1 p-4">
        
         {children} {/* This will render the page-specific content */}
       </main>
