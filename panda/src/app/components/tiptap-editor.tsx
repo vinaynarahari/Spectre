@@ -12,6 +12,7 @@ export default function TipTap({onChange, content}: any) {
   const editor = useEditor({
     extensions: [StarterKit],
     content: content,
+    immediatelyRender: false,
     editorProps: {
         attributes: {
             class: "bg-white rounded-md p-3 h-52"

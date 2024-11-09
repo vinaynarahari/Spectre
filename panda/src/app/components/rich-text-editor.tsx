@@ -26,19 +26,39 @@ export default function RichTextEditor({ content, title: initialTitle, caseId })
         };
 
         try {
-            const response = await fetch(`http://localhost:4000/cases/${caseId}`, {
-                method: 'PUT',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(data),
+            // Check if the case exists with a HEAD request
+            const checkResponse = await fetch(`http://localhost:4000/cases/${caseId}`, {
+                method: 'HEAD',
             });
 
-            if (response.ok) {
+            let response;
+
+            if (checkResponse.ok) {
+                // Case exists; update with PUT
+                response = await fetch(`http://localhost:4000/cases/${caseId}`, {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(data),
+                });
+            } else if (checkResponse.status === 404) {
+                // Case does not exist; create with POST
+                response = await fetch(`http://localhost:4000/cases`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(data),
+                });
+            } else {
+                throw new Error("Failed to check case existence");
+            }
+
+            if (response && response.ok) {
                 const updatedData = await response.json();
                 setTitle(updatedData.title);
                 setEditorContent(updatedData.content);
-                // make successfully saved alert
                 console.log("Data saved and updated successfully");
             } else {
                 console.error("Failed to save data", response.status);

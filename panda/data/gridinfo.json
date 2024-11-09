@@ -34,6 +34,13 @@
       "body": "",
       "lastOpened": "2024-10-29T13:20:00Z",
       "caseType": "OT"
+    },
+    {
+      "id": "f5d072f7-03fb-47ca-87c7-288bdd9c65d4",
+      "title": "Example Case",
+      "content": "<p>This example case was created using the new case button in the sidebar</p>",
+      "lastOpened": "2024-11-09T02:00:43.684Z",
+      "caseType": "OT"
     }
   ],
   "clients": [
