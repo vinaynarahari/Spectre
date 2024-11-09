@@ -12,14 +12,15 @@ export default function Search({ onSearch }: { onSearch: (query: string) => void
     onSearch(e.target.value);
   };
 
-  const handleIconClick = () => {
+  const handleFormClick = () => {
     inputRef.current?.focus();
   };
 
   const handleEscapeKey = (e: KeyboardEvent) => {
     if (e.key === "Escape" && isInputFocused) {
-      e.preventDefault(); // Prevents exiting fullscreen
+      e.preventDefault();
       setQuery("");
+      onSearch(""); // Call onSearch with an empty string to reset the grid
       inputRef.current?.blur();
     }
   };
@@ -42,7 +43,8 @@ export default function Search({ onSearch }: { onSearch: (query: string) => void
     <div className="flex w-full justify-center">
       <div className="flex justify-center w-full">
         <form
-          className="relative w-1/2 h-[50px] bg-gray-100 rounded-lg flex items-center p-4 transition-all duration-300 focus-within:bg-gray-200 focus-within:outline focus-within:outline-2 focus-within:outline-gray-900 focus-within:outline-offset-2"
+          className="relative w-1/2 h-[50px] bg-gray-100 rounded-lg flex items-center p-4 transition-all duration-300 focus-within:bg-gray-200 focus-within:outline focus-within:outline-2 focus-within:outline-gray-900 focus-within:outline-offset-2 cursor-pointer"
+          onClick={handleFormClick}
           onSubmit={(e) => e.preventDefault()}
         >
           <svg
@@ -52,7 +54,6 @@ export default function Search({ onSearch }: { onSearch: (query: string) => void
             strokeWidth={1.5}
             stroke="currentColor"
             className="w-6 h-6 mr-2 text-gray-500 transition-colors duration-300 cursor-pointer"
-            onClick={handleIconClick}
           >
             <path
               strokeLinecap="round"

@@ -62,8 +62,8 @@ export default function Grid() {
           {filteredDocs.map((doc: { id: Key | null | undefined; title: string; lastOpened: string }) => (
             <div key={doc.id} className="flex justify-center">
               <div className="w-52 min-w-0">
-                <div className="h-64 bg-gray-300 mx-auto rounded-lg pt-48 mb-4">
-                <div className="text-left text-sm  text-white bg-gray-900 p-3 h-16 overflow-hidden rounded-b-lg">
+                <div className="h-64 bg-gray-100 mx-auto rounded-md pt-48 mb-4">
+                <div className="text-left text-sm  text-white bg-gray-900 p-3 h-16 overflow-hidden rounded-b-md">
                   <Link href={`/analyze/${doc.id}`}>
                     <div className="whitespace-nowrap overflow-hidden text-ellipsis">
                       {doc.title}
