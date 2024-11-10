@@ -26,33 +26,32 @@ export default function RichTextEditor({ content, title: initialTitle, caseId })
         };
 
         try {
-            // Check if the case exists with a HEAD request
-            const checkResponse = await fetch(`http://localhost:4000/cases/${caseId}`, {
-                method: 'HEAD',
-            });
-
             let response;
 
-            if (checkResponse.ok) {
+            // Check if the case exists with a GET request
+            const checkResponse = await fetch(`/api/cases`);
+            const cases = await checkResponse.json();
+
+            const existingCase = cases.find((c) => c.id === caseId);
+
+            if (existingCase) {
                 // Case exists; update with PUT
-                response = await fetch(`http://localhost:4000/cases/${caseId}`, {
+                response = await fetch(`/api/cases`, {
                     method: 'PUT',
                     headers: {
                         'Content-Type': 'application/json',
                     },
                     body: JSON.stringify(data),
                 });
-            } else if (checkResponse.status === 404) {
+            } else {
                 // Case does not exist; create with POST
-                response = await fetch(`http://localhost:4000/cases`, {
+                response = await fetch(`/api/cases`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
                     },
                     body: JSON.stringify(data),
                 });
-            } else {
-                throw new Error("Failed to check case existence");
             }
 
             if (response && response.ok) {
